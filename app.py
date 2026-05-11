@@ -64,7 +64,7 @@ with st.sidebar:
     <div style='padding:20px 4px 16px 4px;border-bottom:2px solid {BORDER};margin-bottom:4px;'>
         <div style='font-family:Syne,sans-serif;font-size:1.55rem;font-weight:800;
         color:{ACCENT1};line-height:1.1;'>
-            💸 SpendSense AI
+            SpendSense 
         </div>
         <div style='color:{TEXT2};font-size:0.78rem;margin-top:5px;letter-spacing:0.3px;'>
             Smart Expense Analyzer
@@ -166,8 +166,8 @@ if uploaded_file is None and "df" not in st.session_state:
 
     st.markdown(f"""
     <div class='hero-wrap'>
-        <div class='hero-title'>💸 SpendSense AI</div>
-        <p class='hero-sub'>Your AI-powered personal expense analyzer — upload a CSV and get instant charts, trends, and smart financial advice from Groq AI.</p>
+        <div class='hero-title'>💸 SpendSense</div>
+        <p class='hero-sub'>Your personal expense analyzer — upload a CSV and get instant charts, trends, and smart financial advice from Groq AI.</p>
     </div>
     """, unsafe_allow_html=True)
 
