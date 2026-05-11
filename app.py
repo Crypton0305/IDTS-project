@@ -148,11 +148,11 @@ with st.sidebar:
         <div style='color:{TEXT2};font-size:0.73rem;margin-bottom:10px;'>or click to browse</div>
         <div style='display:flex;justify-content:center;gap:6px;flex-wrap:wrap;'>
             <span style='background:{ACCENT1}22;border:1px solid {ACCENT1}55;color:{ACCENT1};
-            padding:2px 7px;border-radius:20px;font-size:0.68rem;font-weight:600;'>📅 Date</span>
+            padding:2px 7px;border-radius:20px;font-size:0.68rem;font-weight:600;'> Date</span>
             <span style='background:{ACCENT2}22;border:1px solid {ACCENT2}55;color:{ACCENT2};
-            padding:2px 7px;border-radius:20px;font-size:0.68rem;font-weight:600;'>💰 Amount</span>
+            padding:2px 7px;border-radius:20px;font-size:0.68rem;font-weight:600;'> Amount</span>
             <span style='background:{ACCENT3}22;border:1px solid {ACCENT3}55;color:{ACCENT3};
-            padding:2px 7px;border-radius:20px;font-size:0.68rem;font-weight:600;'>🏷️ Category</span>
+            padding:2px 7px;border-radius:20px;font-size:0.68rem;font-weight:600;'> Category</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -166,7 +166,7 @@ if uploaded_file is None and "df" not in st.session_state:
 
     st.markdown(f"""
     <div class='hero-wrap'>
-        <div class='hero-title'>💸 SpendSense</div>
+        <div class='hero-title'>SpendSense</div>
         <p class='hero-sub'>Your personal expense analyzer — upload a CSV and get instant charts, trends, and smart financial advice from Groq AI.</p>
     </div>
     """, unsafe_allow_html=True)
@@ -200,11 +200,11 @@ if uploaded_file is None and "df" not in st.session_state:
         </div>
         <div style='display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:4px;'>
             <span style='background:{ACCENT1}22;border:1px solid {ACCENT1}55;color:{ACCENT1};
-            padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;'>📅 Date</span>
+            padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;'> Date</span>
             <span style='background:{ACCENT2}22;border:1px solid {ACCENT2}55;color:{ACCENT2};
-            padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;'>💰 Amount</span>
+            padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;'> Amount</span>
             <span style='background:{ACCENT3}22;border:1px solid {ACCENT3}55;color:{ACCENT3};
-            padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;'>🏷️ Category</span>
+            padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;'> Category</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -247,7 +247,7 @@ else:
     # HERO (compact)
     st.markdown(f"""
     <div class='hero-wrap' style='padding:20px 28px;margin-bottom:20px;'>
-        <div class='hero-title' style='font-size:1.7rem;'>💸 Personal Expense Intelligence</div>
+        <div class='hero-title' style='font-size:1.7rem;'> Personal Expense Intelligence</div>
         <p class='hero-sub'>
             {df.shape[0]} records &nbsp;·&nbsp; {df.shape[1]} columns &nbsp;·&nbsp;
             {len(numeric_cols)} numeric fields &nbsp;·&nbsp;
@@ -262,7 +262,7 @@ else:
         ("📋", f"{df.shape[0]:,}", "Total Rows",    "Records loaded"),
         ("🗂️", str(df.shape[1]),   "Columns",       "Data fields"),
         ("🔢", str(len(numeric_cols)), "Numeric Cols", "Analyzable"),
-        ("📅", f"{int(df['Year'].min())}–{int(df['Year'].max())}" if "Year" in df.columns else "N/A", "Date Range", "Coverage"),
+        ("", f"{int(df['Year'].min())}–{int(df['Year'].max())}" if "Year" in df.columns else "N/A", "Date Range", "Coverage"),
     ]):
         with col_w:
             st.markdown(f"""
@@ -321,7 +321,7 @@ else:
                         st.plotly_chart(fig, use_container_width=True)
 
         if "Month_Name" in df.columns and numeric_cols:
-            st.markdown(f"<div class='section-title'>📅 Monthly Trend</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='section-title'> Monthly Trend</div>", unsafe_allow_html=True)
             selected_metric = st.selectbox("Select metric:", numeric_cols, key="ts_metric")
             month_map = {1:"Jan",2:"Feb",3:"Mar",4:"Apr",5:"May",6:"Jun",
                          7:"Jul",8:"Aug",9:"Sep",10:"Oct",11:"Nov",12:"Dec"}
@@ -339,7 +339,7 @@ else:
             st.plotly_chart(fig_line, use_container_width=True)
 
         if cat_cols:
-            st.markdown(f"<div class='section-title'>🏷️ Category Breakdown</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='section-title'> Category Breakdown</div>", unsafe_allow_html=True)
             c1, c2 = st.columns(2)
             selected_cat = st.selectbox("Select category column:", cat_cols, key="cat_col")
             cat_counts = df[selected_cat].value_counts().reset_index()
@@ -360,7 +360,7 @@ else:
                 st.plotly_chart(fig_pie, use_container_width=True)
 
             if numeric_cols:
-                st.markdown(f"<div class='section-title'>💰 Spending by Category</div>", unsafe_allow_html=True)
+                st.markdown(f"<div class='section-title'> Spending by Category</div>", unsafe_allow_html=True)
                 selected_num = st.selectbox("Select numeric metric:", numeric_cols, key="cat_num")
                 cat_spend = df.groupby(selected_cat)[selected_num].sum().reset_index().sort_values(selected_num, ascending=True)
                 fig_h = px.bar(cat_spend, y=selected_cat, x=selected_num, orientation="h",
@@ -370,7 +370,7 @@ else:
                 st.plotly_chart(fig_h, use_container_width=True)
 
         if len(numeric_cols) > 1:
-            st.markdown(f"<div class='section-title'>🔗 Correlation Matrix</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='section-title'> Correlation Matrix</div>", unsafe_allow_html=True)
             corr_matrix = df[numeric_cols].corr()
             fig_heat = px.imshow(corr_matrix, text_auto=True, aspect="auto",
                 color_continuous_scale=[PLOT_BG, ACCENT1, ACCENT2],
@@ -697,9 +697,9 @@ else:
                 </div>
                 """, unsafe_allow_html=True)
             else:
-                st.info("📅 At least 2 months of data is required for forecasting.")
+                st.info(" At least 2 months of data is required for forecasting.")
         else:
-            st.info("📅 Please upload a CSV with a date column to use the forecast feature.")
+            st.info(" Please upload a CSV with a date column to use the forecast feature.")
 
         # PDF EXPORT
         st.markdown(f"<div class='section-title'>🖨️ Export PDF Report</div>", unsafe_allow_html=True)
